@@ -14,7 +14,6 @@ import SelfShare from "@/components/profile/selfShare";
 import { nFormatter } from "@/lib/utils";
 import SignOut from "@/components/profile/signOut";
 import { EditModal } from "@/components/profile/edit";
-import FollowButton from "@/components/profile/follow";
 
 export default async function ProfilePageLayout({
   children,
