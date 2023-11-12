@@ -31,25 +31,25 @@ export default async function ProfilePage({
         },
       },
       parent: true,
-      likes: true,
+    
     },
   });
 
   return (
     <>
-      <div className="w-full mt-4 flex">
-        <button className="w-full h-10 py-2 font-semibold border-b border-b-white text-center">
+      <div className="flex mt-4 w-full">
+        <button className="py-2 w-full h-10 font-semibold text-center border-b border-b-white">
           Threads
         </button>
         <Link
           href={`/${params.id}/replies`}
-          className="w-full h-10 py-2 font-medium border-b border-neutral-900 duration-200 hover:border-neutral-700 hover:text-neutral-500 text-center text-neutral-600"
+          className="py-2 w-full h-10 font-medium text-center border-b duration-200 border-neutral-900 hover:border-neutral-700 hover:text-neutral-500 text-neutral-600"
         >
           Replies
         </Link>
       </div>
       {posts.length === 0 ? (
-        <div className="text-neutral-600 mt-4 text-center leading-loose">
+        <div className="mt-4 leading-loose text-center text-neutral-600">
           No threads posted yet.
         </div>
       ) : (

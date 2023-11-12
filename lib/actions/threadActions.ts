@@ -48,29 +48,6 @@ export async function replyToThread(
   revalidatePath(path);
 }
 
-export async function repostThread(
-  id: string,
-  reposterId: string,
-  path: string
-) {
-  await prisma.repost.create({
-    data: {
-      post: {
-        connect: {
-          id,
-        },
-      },
-      reposter: {
-        connect: {
-          id: reposterId,
-        },
-      },
-    },
-  });
-
-  revalidatePath(path);
-}
-
 export async function deleteThread(id: string, path: string) {
   // ! navigate back to home if on dedicated page for this thread & its deleted
 
@@ -79,15 +56,10 @@ export async function deleteThread(id: string, path: string) {
       id,
     },
     data: {
-      likes: {
-        deleteMany: {},
-      },
+
       children: {
         deleteMany: {},
       },
-    },
-    include: {
-      likes: true,
     },
   });
 
@@ -100,50 +72,3 @@ export async function deleteThread(id: string, path: string) {
   revalidatePath(path);
 }
 
-export async function likeThread(id: string, userId: string, path: string) {
-  await prisma.likes.create({
-    data: {
-      post: {
-        connect: {
-          id,
-        },
-      },
-      user: {
-        connect: {
-          id: userId,
-        },
-      },
-    },
-  });
-
-  await prisma.post.update({
-    where: {
-      id,
-    },
-    data: {
-      likes: {
-        connect: {
-          postId_userId: {
-            postId: id,
-            userId,
-          },
-        },
-      },
-    },
-  });
-
-  revalidatePath(path);
-}
-
-export async function unlikeThread(id: string, userId: string, path: string) {
-  await prisma.likes.delete({
-    where: {
-      postId_userId: {
-        postId: id,
-        userId,
-      },
-    },
-  });
-
-  revalidatePath(path);
-}

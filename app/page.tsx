@@ -18,21 +18,21 @@ export default async function Page() {
   if (!user)
     return (
       <>
-        <div className="h-16 w-16 bg-cover">
+        <div className="w-16 h-16 bg-cover">
           <Image
             src={logo}
             alt="Threads logo"
-            className="min-h-full invert min-w-full object-cover"
+            className="object-cover min-w-full min-h-full invert"
           />
         </div>
-        <div className="gradient mt-4 mb-12 text-4xl font-bold">Threads</div>
+        <div className="mt-4 mb-12 text-4xl font-bold gradient">Threads</div>
 
-        <Link href="/sign-up" className="w-full px-6">
+        <Link href="/sign-up" className="px-6 w-full">
           <Button className="w-full" variant="outline">
             Create Your Account
           </Button>
         </Link>
-        <Link href="/sign-in" className="w-full px-6 mt-2">
+        <Link href="/sign-in" className="px-6 mt-2 w-full">
           <Button className="w-full" variant="ghost">
             Sign In
           </Button>
@@ -63,7 +63,6 @@ export default async function Page() {
         },
       },
       parent: true,
-      likes: true,
     },
     where: {
       parent: null,
@@ -80,17 +79,17 @@ export default async function Page() {
         }}
         username={getUser.username}
       />
-      <div className="flex items-center justify-center w-full py-5">
-        <div className="h-9 w-9 bg-cover">
+      <div className="flex justify-center items-center py-5 w-full">
+        <div className="w-9 h-9 bg-cover">
           <Image
             src={logo}
             alt="Threads logo"
-            className="min-h-full invert min-w-full object-cover"
+            className="object-cover min-w-full min-h-full invert"
           />
         </div>
       </div>
 
-      {/* <div className="whitespace-pre text-xs">
+      {/* <div className="text-xs whitespace-pre">
         {JSON.stringify(posts, null, 2)}
       </div> */}
       <HomePosts posts={posts} />

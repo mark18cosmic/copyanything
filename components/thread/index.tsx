@@ -84,8 +84,8 @@ export default function Item({
   return (
     <>
       <Link href={`/t/${data.id}`} className={mainClass}>
-        <div className="flex flex-col items-center justify-between">
-          <div className="w-8 h-8 mt-1 rounded-full bg-neutral-600 overflow-hidden">
+        <div className="flex flex-col justify-between items-center">
+          <div className="overflow-hidden mt-1 w-8 h-8 rounded-full bg-neutral-600">
             <Image
               src={data.author.image}
               height={32}
@@ -100,7 +100,7 @@ export default function Item({
             }`}
           >
             {parent ? (
-              <div className="-bottom-7 absolute right-0 w-4 h-8">
+              <div className="absolute right-0 -bottom-7 w-4 h-8">
                 <Image
                   alt=""
                   src={loop}
@@ -113,8 +113,8 @@ export default function Item({
           </div>
           {comment || parent ? null : <Others others={data.children} />}
         </div>
-        <div className="w-full space-y-1">
-          <div className="w-full flex items-center justify-between">
+        <div className="space-y-1 w-full">
+          <div className="flex justify-between items-center w-full">
             <NameLink username={data.author.username} name={data.author.name} />
 
             {comment ? null : (
@@ -131,8 +131,8 @@ export default function Item({
           <div
             className={
               comment
-                ? "text-base/relaxed pb-3 text-left"
-                : "text-base/relaxed text-left"
+                ? "pb-3 text-left text-base/relaxed"
+                : "text-left text-base/relaxed"
             }
           >
             {data.text}
@@ -140,20 +140,11 @@ export default function Item({
           {comment ? null : (
             <>
               <Controls numPosts={posts ? posts.length : -1} data={data} />
-              <div className="flex text-neutral-600 items-center space-x-2">
+              <div className="flex items-center space-x-2 text-neutral-600">
                 {data.children.length > 0 ? (
                   <div>
                     {data.children.length}{" "}
                     {data.children.length === 1 ? "reply" : "replies"}
-                  </div>
-                ) : null}
-                {data.children.length > 0 && data.likes.length > 0 ? (
-                  <div className="w-1 h-1 rounded-full bg-neutral-600" />
-                ) : null}
-                {data.likes.length > 0 ? (
-                  <div>
-                    {data.likes.length}{" "}
-                    {data.likes.length === 1 ? "like" : "likes"}
                   </div>
                 ) : null}
               </div>
